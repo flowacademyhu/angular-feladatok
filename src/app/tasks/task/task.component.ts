@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
+  name : string = 'mosogatás';
+  state : string = '';
 
-  constructor() { }
+  constructor() { 
+    this.state = Math.random() > 0.5 ? 'kész' : 'CSINÁLD';
+  }
 
   ngOnInit() {
   }
 
+  getStatusz() : string {
+    return this.state;
+  }
+
+  getColor() {
+    return this.state === 'kész' ? 'green' : 'red';
+  }
 }

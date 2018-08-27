@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule }    from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TaskComponent } from './tasks/task/task.component';
-import { TasksComponent } from './tasks/tasks/tasks.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
 
 
 @NgModule({
@@ -13,10 +13,11 @@ import { TasksComponent } from './tasks/tasks/tasks.component';
     AppComponent,
     HeaderComponent,
     TaskComponent,
-    TasksComponent
+    TaskListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
