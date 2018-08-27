@@ -1,2 +1,16 @@
-<p>tasks component
-</p>
+<button class='btn btn-primary'
+        (click)="onCreateTask()"
+        > Hozzáad</button>
+<div>
+        <input type="text">
+</div>
+<p *ngIf="taskCreationStatus === 'done'; else noServer">Task hozzáadva!</p>
+<ng-template #noServer>
+        <p>Még nincs task hozzáadva!</p>
+</ng-template>
+<app-task></app-task>
+<app-task></app-task>
+
+<div *ngFor="let task of tasks; let i = index; let even = even">
+        <span [ngStyle]="{backgroundColor : even ? 'pink' : 'lightgreen'}">{{ task }}</span>
+</div>

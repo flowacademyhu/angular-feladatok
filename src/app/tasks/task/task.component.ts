@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Task } from '../task.model';
+import { EventEmitter } from '@angular/core';
+import { LoggerService } from '../../shared/logger.service';
 
 @Component({
   selector: 'app-task',
@@ -6,21 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  name : string = 'mosogatás';
-  state : string = '';
+  @Input() task: Task;
+  @Output() stateHundred : EventEmitter<Task> = new EventEmitter<Task>();
 
-  constructor() { 
-    this.state = Math.random() > 0.5 ? 'kész' : 'CSINÁLD';
+  constructor(private logService: LoggerService) {
   }
 
   ngOnInit() {
+    this.logService.log(this.task.name);
   }
 
-  getStatusz() : string {
-    return this.state;
-  }
-
-  getColor() {
-    return this.state === 'kész' ? 'green' : 'red';
+  onClicked() {
+    this.task.state += 10;
+    if (this.task.state >= 100) {
+      this.stateHundred.emit(this.task);
+    }
   }
 }
